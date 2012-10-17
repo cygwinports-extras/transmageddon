@@ -1,0 +1,29 @@
+inherit gstreamer python3
+
+NAME="transmageddon"
+VERSION=0.25
+RELEASE=1
+CATEGORY="Video"
+SUMMARY="GStreamer-based video transcoder"
+DESCRIPTION="Transmageddon is a video transcoder for *NIX systems built using
+GStreamer. It supports almost any format as its input and can generate a very
+large host of output files. The goal of the application is to help people to
+create the files they need to be able to play on their mobile devices and for
+people not hugely experienced with multimedia to generate a multimedia file
+without having to resort to command line tools with ungainly syntaxes."
+HOMEPAGE="http://www.linuxrising.org/"
+SRC_URI="http://www.linuxrising.org/files/transmageddon-${VERSION}.tar.xz"
+
+REQUIRES="girepository-GLib2.0 girepository-Gst1.0 girepository-GstInterfaces1.0"
+REQUIRES+=" girepository-Gtk3.0 girepository-Notify0.7 gstreamer1.0-plugins-base"
+REQUIRES+=" gstreamer1.0-plugins-good gstreamer1.0-plugins-celt gstreamer1.0-plugins-ogg"
+REQUIRES+=" gstreamer1.0-plugins-theora gstreamer1.0-plugins-vorbis gstreamer1.0-plugins-vp8"
+REQUIRES+=" gstreamer1.0-plugins-flac gstreamer1.0-plugins-speex gstreamer1.0-plugins-schro"
+
+src_compile() {
+	cd ${S}
+	gstreamer_autoreconf
+	cd ${B}
+	cygconf ac_cv_path_PYTHON=${PYTHON3}
+	# no make, erroneously installs po to system
+}
