@@ -1,0 +1,20 @@
+--- origsrc/transmageddon-0.25/configure.ac	2012-10-05 03:41:57.000000000 -0500
++++ src/transmageddon-0.25/configure.ac	2015-05-06 15:25:14.895067200 -0500
+@@ -13,7 +13,7 @@ AC_CONFIG_SRCDIR([src/transmageddon.py])
+ AC_CONFIG_MACRO_DIR([m4])
+ 
+ dnl initialize automake
+-AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz])
++AM_INIT_AUTOMAKE([1.12 no-dist-gzip dist-xz])
+ 
+ dnl enable maintainer mode option
+ AM_MAINTAINER_MODE([enable])
+@@ -44,7 +44,7 @@ AS_AC_EXPAND(LOCALSTATEDIR, $localstated
+ AC_MSG_NOTICE(Using localstatedir $LOCALSTATEDIR)
+ 
+ dnl check for python
+-AS_PATH_PYTHON(2.5)
++AM_PATH_PYTHON(3.2)
+ 
+ dnl enable i18n
+ ALL_LINGUAS="pl"
